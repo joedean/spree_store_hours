@@ -1,0 +1,24 @@
+<h1>Store Hours</h1>
+
+<table class="index">
+  <thead>
+    <tr>
+      <th>Day of week</th>
+      <th>Open Hour</th>
+      <th>Close Hour</th>
+      <th>Closed</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @store_hours.each do |store_hour| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td> <%= store_hour.day %> </td>
+        <td> <%= store_hour.open_time %> </td>
+        <td> <%= store_hour.close_time %> </td>
+        <td> <%= store_hour.closed? %> </td>
+        <td> Edit </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
