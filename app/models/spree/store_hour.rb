@@ -2,6 +2,10 @@ class Spree::StoreHour < ActiveRecord::Base
   attr_accessible :wday, :open_time, :close_time
   validates :wday, :presence => true
 
+  def self.list
+    order :wday
+  end
+
   def self.for(day_name=nil)
     return nil unless day_name
     day_name = day_name.to_s.capitalize
