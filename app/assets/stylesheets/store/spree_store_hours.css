@@ -1,3 +1,50 @@
 /*
  *= require store/spree_frontend
 */
+#store-hours {
+  float: right;
+  margin: 15px 0px 0px 0px;
+}
+
+#store-hours h4 {
+  color: #6A384D;
+  margin-bottom: 0px;
+  margin-left: 20px;
+}
+
+#store-hours ul {
+  list-style: none;
+}
+
+#store-hours ul li {
+  float: left;
+  margin-left: 0.2em;
+  border: 2px solid #EEEFF0;
+  padding: 2px 5px 6px 5px;
+  background-color: #F7F7F7;
+  font-size: 0.8em;
+  color: black;
+  font-weight: bolder;
+  line-height: 1.3em;
+  text-align: right;
+}
+
+#store-hours .today {
+  background-color: #F6B8E5;
+  border: 2px solid #F6B8E5;
+}
+
+#store-hours .closed {
+  padding-top: 8px;
+  padding-bottom: 16px;
+}
+
+
+#store-hours .day {
+  font-weight: normal;
+  text-align: center;
+}
+
+#store-hours .seperator {
+  text-align: center;
+}

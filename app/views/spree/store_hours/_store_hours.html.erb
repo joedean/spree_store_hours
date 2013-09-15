@@ -1,20 +1,21 @@
-<h4>Store Hours</h4>
-<ul>
-  </li>
-  <% Spree::StoreHour.list.each do |store_hour| %>
-    <li class="<%= store_hour.day.downcase %>"
-      <div class="day">
-        <%= store_hour.day.upcase %>
-      </div>
-      <div class="<%= store_hour.closed? ? 'closed' : 'open' %>">
-        <%= store_hour.open_time %>
-      </div>
-      <% unless store_hour.closed? %>
-          <div class="seperator"> - </div>
-          <div class="close">
-            <%= store_hour.close_time %>
-          </div>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<div id="store-hours">
+  <h4>Store Hours</h4>
+  <ul>
+    <% Spree::StoreHour.list.each do |store_hour| %>
+      <li class="<%= store_hour.day.downcase %>">
+        <div class="day">
+          <%= store_hour.day.upcase %>
+        </div>
+        <div class="<%= store_hour.closed? ? 'closed' : 'open' %>">
+          <%= store_hour.open_time %>
+        </div>
+        <% unless store_hour.closed? %>
+            <div class="seperator"> - </div>
+            <div class="close">
+              <%= store_hour.close_time %>
+            </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
