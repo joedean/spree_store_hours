@@ -1,22 +1,22 @@
 class Spree::StoreHour < ActiveRecord::Base
-  attr_accessible :day, :open_time, :close_time
-  validates :day, :presence => true
+  attr_accessible :wday, :open_time, :close_time
+  validates :wday, :presence => true
 
   def self.for(day_name=nil)
     return nil unless day_name
     day_name = day_name.to_s.capitalize
-    day = Date::DAYNAMES.index day_name
-    day = Date.today.wday if day_name == "Today"
-    result = where :day => day
+    wday = Date::DAYNAMES.index day_name
+    wday = Date.today.wday if day_name == "Today"
+    result = where :wday => wday
     if result.empty?
-      Spree::StoreHour.new :day => day
+      Spree::StoreHour.new :wday => wday
     else
       result.first
     end
   end
 
   def day
-    Date::DAYNAMES[self[:day]] if self[:day]
+    Date::DAYNAMES[self[:wday]] if self[:wday]
   end
 
   def closed?

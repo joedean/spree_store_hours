@@ -1,11 +1,11 @@
 require 'spec_helper'
-
 describe Spree::StoreHour do
   let(:store_hour_with_no_day) { Spree::StoreHour.new }
-  let(:store_hour) { Spree::StoreHour.new(day: 1, open_time: '8:00 am', close_time: '5:00 pm') }
+  let(:store_hour) { Spree::StoreHour.new(wday: 1, open_time: '8:00 am', close_time: '5:00 pm') }
   subject { store_hour }
 
-  it "is invalid without a day" do
+
+  it "is invalid without a wday" do
     store_hour_with_no_day.should_not be_valid
   end
   it "changes the number of days defined with business hours" do
@@ -23,13 +23,13 @@ describe Spree::StoreHour do
   end
 
   context "gets store hours when" do
-    let!(:sunday_hours) { FactoryGirl.create(:spree_store_hour, :day => 0, :open_time => '1:00 pm', :close_time => '10:00 pm') }
-    let!(:monday_hours) { FactoryGirl.create(:spree_store_hour, :day => 1, :open_time => '7:00 am', :close_time => '3:00 pm') }
-    let!(:tuesday_hours) { FactoryGirl.create(:spree_store_hour, :day => 2, :open_time => '8:00 am', :close_time => '4:00 pm') }
-    let!(:wednesday_hours) { FactoryGirl.create(:spree_store_hour, :day => 3, :open_time => '9:00 am', :close_time => '5:00 pm') }
-    let!(:thursday_hours) { FactoryGirl.create(:spree_store_hour, :day => 4, :open_time => '10:00 am', :close_time => '6:00 pm') }
-    let!(:friday_hours) { FactoryGirl.create(:spree_store_hour, :day => 5, :open_time => '11:00 am', :close_time => '7:00 pm') }
-    let!(:saturday_hours) { FactoryGirl.create(:spree_store_hour, :day => 6, :open_time => '12:00 pm', :close_time => '8:00 pm') }
+    let!(:sunday_hours) { FactoryGirl.create(:spree_store_hour, :wday => 0, :open_time => '1:00 pm', :close_time => '10:00 pm') }
+    let!(:monday_hours) { FactoryGirl.create(:spree_store_hour, :wday => 1, :open_time => '7:00 am', :close_time => '3:00 pm') }
+    let!(:tuesday_hours) { FactoryGirl.create(:spree_store_hour, :wday => 2, :open_time => '8:00 am', :close_time => '4:00 pm') }
+    let!(:wednesday_hours) { FactoryGirl.create(:spree_store_hour, :wday => 3, :open_time => '9:00 am', :close_time => '5:00 pm') }
+    let!(:thursday_hours) { FactoryGirl.create(:spree_store_hour, :wday => 4, :open_time => '10:00 am', :close_time => '6:00 pm') }
+    let!(:friday_hours) { FactoryGirl.create(:spree_store_hour, :wday => 5, :open_time => '11:00 am', :close_time => '7:00 pm') }
+    let!(:saturday_hours) { FactoryGirl.create(:spree_store_hour, :wday => 6, :open_time => '12:00 pm', :close_time => '8:00 pm') }
 
     it "has every day of the week defined in the database" do
       store_hours = Spree::StoreHour.all
@@ -55,9 +55,9 @@ describe Spree::StoreHour do
   end
 
   context "is closed when" do
-    let!(:monday_hours) { FactoryGirl.create(:spree_store_hour, :day => 1, :open_time => '7:00 am', :close_time => nil) }
-    let!(:tuesday_hours) { FactoryGirl.create(:spree_store_hour, :day => 2, :open_time => nil, :close_time => '4:00 pm') }
-    let!(:wednesday_hours) { FactoryGirl.create(:spree_store_hour, :day => 3, :open_time => nil, :close_time => nil) }
+    let!(:monday_hours) { FactoryGirl.create(:spree_store_hour, :wday => 1, :open_time => '7:00 am', :close_time => nil) }
+    let!(:tuesday_hours) { FactoryGirl.create(:spree_store_hour, :wday => 2, :open_time => nil, :close_time => '4:00 pm') }
+    let!(:wednesday_hours) { FactoryGirl.create(:spree_store_hour, :wday => 3, :open_time => nil, :close_time => nil) }
 
     it "has no close time" do
       Spree::StoreHour.for(:monday).should be_closed

@@ -1,3 +1,6 @@
 /*
  *= require admin/spree_backend
 */
+nav#admin-menu div.containter div.main-menu-wrapper {
+  width: 941px;
+}

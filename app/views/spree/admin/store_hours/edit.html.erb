@@ -1,0 +1,16 @@
+<% content_for :page_title do %>
+   <%= Spree.t("static_content.store_hours") %> <i class="icon-arrow-right"></i> <%= Spree.t("static_content.editing_hours") %> for "<%= @store_hour.day %>"
+<% end %>
+
+<% content_for :page_actions do %>
+  <li><%= button_link_to Spree.t(:back_to_store_hours_list), spree.admin_pages_url, :icon => 'icon-arrow-left' %></li>
+<% end %>
+
+<%= render "spree/shared/error_messages", :target => @store_hours %>
+
+<%= form_for [:admin, @store_hour] do |f| %>
+  <fieldset class="no-border-top">
+    <%= render :partial => 'form', :locals => { :f => f } %>
+    <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>

@@ -1,4 +1,6 @@
-<h1>Store Hours</h1>
+<% content_for :page_title do %>
+   <%= Spree.t("static_content.store_hours") %>
+<% end %>
 
 <table class="index">
   <thead>
@@ -7,7 +9,7 @@
       <th>Open Hour</th>
       <th>Close Hour</th>
       <th>Closed</th>
-      <th>Edit</th>
+      <th class="actions"></th>
     </tr>
   </thead>
   <tbody>
@@ -17,7 +19,9 @@
         <td> <%= store_hour.open_time %> </td>
         <td> <%= store_hour.close_time %> </td>
         <td> <%= store_hour.closed? %> </td>
-        <td> Edit </td>
+        <td  class="actions">
+          <%= link_to_edit store_hour, :no_text => true %>
+        </td>
       </tr>
     <% end %>
   </tbody>
