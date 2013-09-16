@@ -23,6 +23,10 @@ class Spree::StoreHour < ActiveRecord::Base
     Date::DAYNAMES[self[:wday]] if self[:wday]
   end
 
+  def abbr_day
+    Date::ABBR_DAYNAMES[self[:wday]] if self[:wday]
+  end
+
   def closed?
     open_time.nil? || close_time.nil?
   end

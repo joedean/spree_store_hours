@@ -2,9 +2,9 @@
   <h4>Store Hours</h4>
   <ul>
     <% Spree::StoreHour.list.each do |store_hour| %>
-      <li class="<%= store_hour.day.downcase %>">
+      <li class="<%= store_hour.abbr_day.downcase %>">
         <div class="day">
-          <%= store_hour.day.upcase %>
+          <%= store_hour.abbr_day.upcase %>
         </div>
         <div class="<%= store_hour.closed? ? 'closed' : 'open' %>">
           <%= store_hour.open_time %>

@@ -4,13 +4,14 @@ describe Spree::StoreHour do
   let(:store_hour) { Spree::StoreHour.new(wday: 1, open_time: '8:00 am', close_time: '5:00 pm') }
   subject { store_hour }
 
-
   it "is invalid without a wday" do
     store_hour_with_no_day.should_not be_valid
   end
+
   it "changes the number of days defined with business hours" do
     expect { store_hour.save }.to change { Spree::StoreHour.count }.by(1)
   end
+
   it "has hours if there is an open and close time" do
     store_hour.open_time.should == '8:00 am'
     store_hour.close_time.should == '5:00 pm'
@@ -35,19 +36,24 @@ describe Spree::StoreHour do
       store_hours = Spree::StoreHour.all
       store_hours.size.should == 7
       store_hours.map(&:day).should == ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+      store_hours.map(&:abbr_day).should == ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
       store_hours.map(&:open_time).should == ['1:00 pm', '7:00 am', '8:00 am', '9:00 am', '10:00 am', '11:00 am', '12:00 pm']
       store_hours.map(&:close_time).should == ['10:00 pm', '3:00 pm', '4:00 pm', '5:00 pm', '6:00 pm', '7:00 pm', '8:00 pm']
     end
+
     it "provides a specific day of the week" do
       monday_store_hours = Spree::StoreHour.for :monday
       monday_store_hours.day.should == "Monday"
+      monday_store_hours.abbr_day.should == "Mon"
       monday_store_hours.open_time == '7:00 am'
       monday_store_hours.close_time == '3:00 pm'
     end
+
     it "provides today" do
       Timecop.freeze(Time.local(2012, 9, 1, 12, 0, 0))
       todays_store_hours = Spree::StoreHour.for :today
       todays_store_hours.day.should == "Saturday"
+      todays_store_hours.abbr_day.should == "Sat"
       todays_store_hours.open_time == '12:00 pm'
       todays_store_hours.close_time == '8:00 pm'
       Timecop.return

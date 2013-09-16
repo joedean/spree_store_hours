@@ -1,15 +1,25 @@
 /*
  *= require store/spree_frontend
 */
+nav#top-nav-bar ul#nav-bar {
+  margin-bottom: 0px;
+}
+
+nav #main-nav-bar {
+  margin-top:10px;
+}
+
 #store-hours {
   float: right;
-  margin: 15px 0px 0px 0px;
+  text-align: left;
 }
 
 #store-hours h4 {
   color: #6A384D;
   margin-bottom: 0px;
   margin-left: 20px;
+  font-size: 14px;
+  line-height: 1.5em;
 }
 
 #store-hours ul {
@@ -24,7 +34,7 @@
   background-color: #F7F7F7;
   font-size: 0.8em;
   color: black;
-  font-weight: bolder;
+  font-weight: normal;
   line-height: 1.3em;
   text-align: right;
 }
@@ -39,12 +49,14 @@
   padding-bottom: 16px;
 }
 
-
 #store-hours .day {
-  font-weight: normal;
+  font-weight: bolder;
   text-align: center;
+  margin-bottom: 5px;
+  text-decoration: underline;
 }
 
 #store-hours .seperator {
   text-align: center;
+  line-height: 0.75em;
 }
