@@ -1,9 +1,12 @@
 //= require store/spree_frontend
+if (!window.SpreeStoreHours) {
+    window.SpreeStoreHours = {};
+
+    SpreeStoreHours.wday = function() {
+        return ["sun","mon","tue","wed","thu","fri","sat"][(new Date()).getDay()];
+    }
+}
+
 $(function() {
-  var timezone = "US/Pacific";
-  $.getJSON("http://json-time.appspot.com/time.json?tz="+timezone+"&callback=?",
-    function(data){
-      var wday = data.datetime.substring(0,3).toLowerCase();
-      $("div#store-hours ul li."+wday).addClass("today");
-    })
+    $("div#store-hours ul li." + SpreeStoreHours.wday()).addClass("today");
 });
